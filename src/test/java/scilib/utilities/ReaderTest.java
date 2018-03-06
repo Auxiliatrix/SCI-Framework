@@ -13,11 +13,11 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 /**
- * A collection of tests for the FileConverter.
+ * A collection of tests for the Filereader.
  * @author rlee287
  *
  */
-public class FileConverterTest {
+public class ReaderTest {
 	private static String fileToRead = "fileToRead_42.txt";
 	private static String fileNonExist = "whyDoYouThinkMyNonexistenceMatters";
 
@@ -46,8 +46,8 @@ public class FileConverterTest {
 	 */
 	@Test
 	public void testConvertNoFile() {
-		Reader converter = new Reader();
-		assertNull(converter.convert(fileNonExist));
+		Reader reader = new Reader();
+		assertNull(reader.convert(fileNonExist));
 	}
 	
 	/**
@@ -55,8 +55,8 @@ public class FileConverterTest {
 	 */
 	@Test
 	public void testConvertFile() {
-		Reader converter = new Reader();
-		Iterator<String> iter = converter.convert(fileToRead).iterator();
+		Reader reader = new Reader();
+		Iterator<String> iter = reader.convert(fileToRead).iterator();
 		assertEquals(iter.next(), "the_answer_to");
 		assertEquals(iter.next(), "life_the_universe");
 		assertEquals(iter.next(), "and_everything");
