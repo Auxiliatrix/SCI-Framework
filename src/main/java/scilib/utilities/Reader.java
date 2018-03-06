@@ -10,12 +10,12 @@ import java.util.ArrayList;
  * @author Auxiliatrix
  *
  */
-public class FileConverter {
+public class Reader {
 	
 	/**
-	 * Creates a FileConverter object.
+	 * Creates a Reader object.
 	 */
-	public FileConverter() {}
+	public Reader() {}
 	
 	/**
 	 * Converts a text file into an ArrayList of Strings.

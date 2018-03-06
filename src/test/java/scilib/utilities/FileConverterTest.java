@@ -46,7 +46,7 @@ public class FileConverterTest {
 	 */
 	@Test
 	public void testConvertNoFile() {
-		FileConverter converter = new FileConverter();
+		Reader converter = new Reader();
 		assertNull(converter.convert(fileNonExist));
 	}
 	
@@ -55,7 +55,7 @@ public class FileConverterTest {
 	 */
 	@Test
 	public void testConvertFile() {
-		FileConverter converter = new FileConverter();
+		Reader converter = new Reader();
 		Iterator<String> iter = converter.convert(fileToRead).iterator();
 		assertEquals(iter.next(), "the_answer_to");
 		assertEquals(iter.next(), "life_the_universe");
@@ -69,7 +69,7 @@ public class FileConverterTest {
 	@Test
 	public void testCompress() {
 		assertEquals("iwillignorethe23media",
-				new FileConverter().compress("I will ignore the %23media"));
+				new Reader().compress("I will ignore the %23media"));
 	}
 
 }

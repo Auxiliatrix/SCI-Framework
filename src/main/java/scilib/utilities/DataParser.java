@@ -2,7 +2,6 @@ package scilib.utilities;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Scanner;
 import java.util.StringTokenizer;
 
 import sci.SCI;
@@ -15,13 +14,13 @@ import scilib.objects.TeamData;
  */
 public class DataParser {
 	
-	private static FileConverter fc;
+	private static Reader r;
 	
 	/**
 	 * Creates a DataParser object.
 	 */
 	public DataParser() {
-		fc = new FileConverter();
+		r = new Reader();
 	}
 	
 	/**
@@ -32,14 +31,14 @@ public class DataParser {
 	public ArrayList<TeamData> process(String fileName) {
 		ArrayList<TeamData> teams = new ArrayList<TeamData>();
 		HashMap<String, ArrayList<Double>> data = new HashMap<String, ArrayList<Double>>();
-		ArrayList<String> lines = fc.convert(fileName);
+		ArrayList<String> lines = r.convert(fileName);
 		
 		for( String line : lines ) {
-			if( fc.compress(line).startsWith("teamnumber") ) {
+			if( r.compress(line).startsWith("teamnumber") ) {
 				StringTokenizer sc = new StringTokenizer(line);
 				while( sc.hasMoreTokens() ) {
 					String next = sc.nextToken(",");
-					next = fc.compress(next);
+					next = r.compress(next);
 					if( !(next.equals("") || next.equals("teamnumber")) ) {
 						teams.add(new TeamData(next));
 					}
@@ -50,7 +49,7 @@ public class DataParser {
 		
 		for( String dataType : SCI.configuration.dataTypes ) {
 			for( String line : lines ) {
-				if( fc.compress(line).startsWith(dataType) ) {
+				if( r.compress(line).startsWith(dataType) ) {
 					data.put(dataType, parse(dataType, line));
 					break;
 				}
@@ -73,7 +72,7 @@ public class DataParser {
 		StringTokenizer sc = new StringTokenizer(line);
 		while( sc.hasMoreTokens() ) {
 			String next = sc.nextToken(",");
-			next = fc.compress(next);
+			next = r.compress(next);
 			if( !(next.equals("") || next.equals(dataType)) ) {
 				parseData.add(Double.parseDouble(next));
 			}

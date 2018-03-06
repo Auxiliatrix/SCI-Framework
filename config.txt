@@ -6,6 +6,7 @@
 // team: team number/name
 
 data_file: sample.txt
+save_file: save.txt
 decimal_format: #.###
 data_types: Time, Score,
 motd: Type "help" to see a list of commands.
